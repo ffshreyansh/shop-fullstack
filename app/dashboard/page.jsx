@@ -8,6 +8,7 @@ import Image from 'next/image';
 import 'react-circular-progressbar/dist/styles.css';
 import ProgressBar from "@ramonak/react-progress-bar";
 import '../globals.css';
+import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'
 import {
     Chart as ChartJS,
@@ -72,6 +73,32 @@ const Dashboard = () => {
             },
         },
     };
+
+    const data2 = {
+        labels: ['1st Oct', '3th Oct', '5th Oct', '7th Oct'],
+        datasets: [
+          {
+            label: 'Monthly Sales',
+            data: [80, 19, 3, 100],
+            borderColor: 'rgba(75, 192, 192, 1)', // Line color
+            borderWidth: 2,
+          },
+        ],
+      };
+    
+      // Chart options
+      const options2 = {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+            legend: {
+                display: false, // Hide the dataset label
+            },
+        },
+      };
     return (
         <div className="lg:flex font-satoshi">
             <div className="lg:w-20 hidden lg:block h-screen p-6 border-r-2">
@@ -79,7 +106,7 @@ const Dashboard = () => {
                     <Link href='/' className=''>
                         <svg id="logo-72" width="30" height="30" viewBox="0 0 53 44" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M23.2997 0L52.0461 28.6301V44H38.6311V34.1553L17.7522 13.3607L13.415 13.3607L13.415 44H0L0 0L23.2997 0ZM38.6311 15.2694V0L52.0461 0V15.2694L38.6311 15.2694Z" class="ccustom" fill="#212326"></path> </svg>
                     </Link>
-                    <Link href='/' className='rounded-full bg-purp  w-10 h-10 flex items-center justify-center'>
+                    <Link href='/' className='rounded-full bg-purp  w-10 h-10 flex items-center justify-center mt-9'>
                         <Image src={'/assets/icons/burger-solid copy.svg'} width={18} height={18} />
                     </Link>
                     <Link href='/' className='rounded-full  w-10 h-10 flex items-center justify-center'>
@@ -251,7 +278,9 @@ const Dashboard = () => {
                     <div className="w-2/5 border-2 p-4 rounded-xl">
                         <h2 className='font-semibold text-md'>Sales Analytics</h2>
                         <p className='text-xs text-gray-500 font-medium'>Will show in every 7 days data</p>
-
+                           <div className="h-80 mt-5">
+                           <Line data={data2} options={options2} />
+                            </div>                 
                     </div>
                 </div>
             </div>
