@@ -8,6 +8,7 @@ import Image from 'next/image';
 import 'react-circular-progressbar/dist/styles.css';
 import ProgressBar from "@ramonak/react-progress-bar";
 import '../globals.css';
+import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'
 import {
     Chart as ChartJS,
@@ -72,6 +73,27 @@ const Dashboard = () => {
             },
         },
     };
+
+    const data2 = {
+        labels: ['1st Oct', '3th Oct', '5th Oct', '7th Oct'],
+        datasets: [
+          {
+            label: 'Monthly Sales',
+            data: [80, 19, 3, 100],
+            borderColor: 'rgba(75, 192, 192, 1)', // Line color
+            borderWidth: 2,
+          },
+        ],
+      };
+    
+      // Chart options
+      const options2 = {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      };
     return (
         <div className="lg:flex font-satoshi">
             <div className="lg:w-20 hidden lg:block h-screen p-6 border-r-2">
@@ -251,7 +273,9 @@ const Dashboard = () => {
                     <div className="w-2/5 border-2 p-4 rounded-xl">
                         <h2 className='font-semibold text-md'>Sales Analytics</h2>
                         <p className='text-xs text-gray-500 font-medium'>Will show in every 7 days data</p>
-
+                           <div className="h-80">
+                           <Line data={data2} options={options2} />
+                            </div>                 
                     </div>
                 </div>
             </div>

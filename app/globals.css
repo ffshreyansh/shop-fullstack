@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .CircularProgressbar {
-    width: 70% ;
+    width: 70% !important;
 }
 .CircularProgressbar-text{
     transform: rotate(90deg);
