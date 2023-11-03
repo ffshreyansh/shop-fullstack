@@ -30,3 +30,22 @@ div[role="progressbar"] span{
 .prp{
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
+
+.th1{
+    border-top-left-radius: 8px;
+}
+.th2{
+    border-top-right-radius: 8px    ;
+}
+
+.component-transition {
+    opacity: 0;
+    transition: opacity 0.2s ease; /* Adjust the duration as needed */
+    pointer-events: none; /* Disable interaction during the transition */
+  }
+  
+  .component-transition.active {
+    opacity: 1;
+    pointer-events: auto; /* Enable interaction after the transition */
+  }
+  
