@@ -49,3 +49,19 @@ div[role="progressbar"] span{
     pointer-events: auto; /* Enable interaction after the transition */
   }
   
+
+  .hM{
+    height: 500px;
+  }
+
+ .scrollOFF::-webkit-scrollbar{
+    display: none;
+ }
+
+ .gP{
+    background: linear-gradient(97deg,  #c39bd3, #a901f1);
+    background-clip: text;
+    
+    color: transparent;
+    text-fill-color: transparent;
+ }

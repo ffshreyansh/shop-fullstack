@@ -12,13 +12,6 @@ export async function POST(req) {
         return new Response("Missing body data", { status: 400 });
     }
 
-    // const sameProductName = await prisma.products.findUnique({
-    //     where:{name: name}
-    // });
-
-    // if(sameProductName){
-    //     return Response("Can't be same product name", {status: 400});
-    // }
 
     const products = await prisma.products.create({
         data: {
@@ -31,3 +24,33 @@ export async function POST(req) {
 
     return NextResponse.json(products);
 }
+
+export async function GET(req) {
+    try {
+        const products = await prisma.products.findMany();
+        return NextResponse.json(products);
+    } catch (error) {
+        // Handle errors appropriately, e.g., return a 500 Internal Server Error response.
+        return new Response("Internal Server Error", { status: 500 });
+    }
+}
+
+// export async function DELETE(req) {
+//     const { id } = req.query;
+
+//     console.log("Deleting product with ID: ", id); // Add this line to check the received ID
+
+//     try {
+//         const deletedProduct = await prisma.products.delete({
+//             where: {
+//                 id: parseInt(id),
+//             },
+//         });
+//         console.log("Deleted product: ", deletedProduct); // Add this line to check the deleted product
+//         return NextResponse.json(deletedProduct);
+//     } catch (error) {
+//         console.error("Error deleting product: ", error); // Add this line to check for errors
+//         // Handle errors appropriately, e.g., return a 500 Internal Server Error response.
+//         return new Response("Internal Server Error", { status: 500 });
+//     }
+// }

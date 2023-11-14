@@ -1,9 +1,10 @@
 'use client'
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const AddProducts = () => {
   const [toggle, setToggle] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
+  const [products, setProducts] = useState([]);
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
   const [data, setData] = useState({
@@ -87,6 +88,46 @@ const AddProducts = () => {
       console.error('Error:', error);
     }
   };
+
+  useEffect(()=>{
+    async function fetchData(){
+      try{
+        const response = await fetch('/api/addproducts',{
+          method:'GET'
+        });
+        console.log(response);
+        if(!response.ok){
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data);
+      }catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
+
+
+  const deleteItem = async (id) => {
+    try {
+        const response = await fetch(`/api/addproducts/${id}`, {
+            method: 'DELETE',
+        });
+        console.log("Delete response status: ", response.status); // Add this line to check the response status
+        const data = await response.json();
+        console.log("Delete response data: ", data); // Add this line to check the response data
+
+        if (response.ok) {
+            setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+        } else {
+            console.error("Failed to Delete Product: ", response);
+        }
+    } catch (error) {
+        console.error("Error in deleting: ", error);
+    }
+};
+
   
   const drop = () => {
     setToggle(!toggle);
@@ -126,31 +167,32 @@ const AddProducts = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="text-md font-medium text-md cursor-pointer">
+              {products.map((product) => (
+              <tr className="text-md font-medium text-md cursor-pointer" key={product.id}>
                 <td className="py-3 flex items-center gap-3 pl-3">
                   <input type="checkbox" name="select" data-bs-id="1" id="select" />
 
                   <span className="h-10 w-10 flex items-center justify-center rounded-lg overflow-hidden" >
-                    <img src="/assets/SRK.jpg" alt="Profile Picture" className="w-full h-full object-cover" />
+                    <img src={product.productImg} alt="Profile Picture" className="w-full h-full object-cover" />
 
                   </span>
 
-                  <span>Robert Carter</span>
+                  <span>{product.name}</span>
                 </td>
                 <td className="py-3 ">
-                  <span className='bg-gray-100 px-3 py-1 rounded-full text-sm font-regular'>Shoes</span>
+                  <span className='bg-gray-100 px-3 py-1 rounded-full text-sm font-regular'>{product.category}</span>
                 </td>
-                <td className="py-3">924</td>
+                <td className="py-3">{product.stock}</td>
 
-                <td className="py-3">$2600</td>
+                <td className="py-3">${product.price}</td>
                 <td className="py-3">
 
-                  <img width="20" height="20" src="https://img.icons8.com/fluency-systems-regular/48/trash--v1.png"  alt="trash--v1" />
+                  <img width="20" height="20" src="https://img.icons8.com/fluency-systems-regular/48/trash--v1.png" onClick={()=>deleteItem(product.id)} className=' cursor-pointer'  alt="trash--v1" />
 
                 </td>
               </tr>
 
-
+              ))}
 
             </tbody>
           </table>
@@ -202,11 +244,10 @@ const AddProducts = () => {
                       required
                     >
                       <option value="Product Name" disabled className='text-gray-100'>Categories</option>
-                      <option value="Category 1">Category 1</option>
-                      <option value="Category 2">Category 2</option>
-                      <option value="Category 3">Category 3</option>
-                      <option value="Category 4">Category 4</option>
-                      <option value="Category 5">Category 5</option>
+                      <option value="Shoes">Shoes</option>
+                      <option value="Shirts">Shirts</option>
+                      <option value="Bags">Bags</option>
+                      <option value="Jewelery">Jewelery</option>
                     </select>
                   </div>
                   <div className='w-full flex items-center justify-between mb-2'>

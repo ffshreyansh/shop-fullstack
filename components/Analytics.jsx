@@ -99,7 +99,7 @@ const Analytics = () => {
     <div className='flex gap-3 w-96 items-center justify-end'>
         <input type="text" placeholder='Search' className='border rounded-full bg-gray-100 w-56 h-10 px-5 outline-none' />
         <div className='w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center'>
-            <img src="/assets/icons/bellB.svg" alt="" />
+            <img src="/assets/icons/bellB.svg" alt="bell-icon" />
         </div>
         <div className="h-10 w-10 relative flex items-center justify-center rounded-full overflow-hidden" onClick={handleProfile}>
             <img src="/assets/SRK.jpg" alt="Profile Picture" className="w-full h-full object-cover" />
