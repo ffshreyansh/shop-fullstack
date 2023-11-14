@@ -45,3 +45,19 @@ model User {
   sessions      Session[]
 }
 
+model Products {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  productImg   String?    
+  name         String?   @unique
+  category     String?
+  description  String?
+  price        Float?
+  stock        Int?
+}
+
+// Create a new Prisma model in your schema.prisma file
+// model UploadedImage {
+//   id       String      @id @default(auto()) @map("_id") @db.ObjectId
+//   url      String
+//   createdAt DateTime @default(now())
+// }

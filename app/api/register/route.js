@@ -38,27 +38,3 @@ export async function POST(req){
     return new Response.json(user)
 }
 
-// export async function POST(request) {
-//     try {
-//         const body = await request.json();
-//         const { email, password } = body;
-
-//         const hashedPassword = await bcrypt.hash(password, 10);
-
-//         const user = await prisma.user.create({
-//             data: {
-//                 email: email,
-//                 password: hashedPassword,
-//             },
-//         });
-//         return new NextResponse({
-//             status: 201, 
-//             json: { message: 'User registered successfully' },
-//         });
-//     } catch (error) {
-//         return new NextResponse({
-//             status: 500, 
-//             json: { error: 'An error occurred during registration' },
-//         });
-//     }
-// }
