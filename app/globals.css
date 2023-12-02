@@ -63,5 +63,24 @@ div[role="progressbar"] span{
     background-clip: text;
     
     color: transparent;
-    text-fill-color: transparent;
  }
+
+ @keyframes rotateImage {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+ 
+  .rotate-image {
+    width: 50%;
+    max-width: 100px; 
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    animation: rotateImage 20s linear infinite;
+  }

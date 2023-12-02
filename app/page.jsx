@@ -3,6 +3,7 @@ import './globals.css'
 import Home from '@/components/Home'
 import Footer from '@/components/Footer'
 import { PopularItems } from '@/components/PopularItems'
+import ExclusiveProducts from '@/components/ExclusiveProducts'
 
 const page = () => {
   return (
@@ -36,8 +37,8 @@ const page = () => {
       </div>
       <div className='p-7'>
         <Home />
+        <ExclusiveProducts/>
       </div>
-      <PopularItems/>
       <Footer/>
     </>
   )
