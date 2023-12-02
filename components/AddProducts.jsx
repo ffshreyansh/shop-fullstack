@@ -129,9 +129,19 @@ const AddProducts = () => {
 };
 
   
-  const drop = () => {
-    setToggle(!toggle);
-  };
+const drop = () => {
+  setToggle(!toggle);
+  setData({
+    name: '',
+    description: '',
+    category: '',
+    price: 0.0,
+    stock: 0,
+    productImg: '',  // Assuming productImg is a string
+  });
+  setUploadedImages([]);
+};
+
 
   return (
     <>
@@ -243,11 +253,11 @@ const AddProducts = () => {
                       className="border rounded-xl bg-gray-100 px-2 h-10 outline-none w-full mb-2 text-gray-400"
                       required
                     >
-                      <option value="Product Name" disabled className='text-gray-100'>Categories</option>
-                      <option value="Shoes">Shoes</option>
-                      <option value="Shirts">Shirts</option>
-                      <option value="Bags">Bags</option>
-                      <option value="Jewelery">Jewelery</option>
+                      <option value="Product Name" className='text-gray-100'>Categories</option>
+                      <option value="Camera">Camera</option>
+                      <option value="Shampoo">Shampoo</option>
+                      <option value="Serum">Serum</option>
+                      <option value="Accessories">Accessories</option>
                     </select>
                   </div>
                   <div className='w-full flex items-center justify-between mb-2'>
